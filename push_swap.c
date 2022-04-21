@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/04/21 20:35:30 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/04/21 20:41:38 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 void print_list_a(t_list *stack_a)
 {
-					int i = 0;
-					int j = 1;
-					i = ft_lstsize(stack_a);
-					printf("\nlist A avec %d arg\n\n", i);
-				
-				    while(stack_a) 
-					{
-				        printf("lst %d contient %s\n",j ,stack_a->content);
-						j++;
-				        stack_a = stack_a->next;
-				    }
+	int i = 0;
+	int j = 1;
+	i = ft_lstsize(stack_a);
+	printf("\nlist A avec %d arg\n\n", i);
+
+    while(stack_a) 
+	{
+        printf("lst %d contient %s\n",j ,stack_a->content);
+		j++;
+        stack_a = stack_a->next;
+    }
 }
 
 void print_list_b(t_list *stack_b)
 {
-					int i = 0;
-					int j = 1;
-					i = ft_lstsize(stack_b);
-					printf("\nlist B avec %d arg\n\n", i);
-				
-				    while(stack_b) 
-					{
-				        printf("lst %d contient %s\n",j ,stack_b->content);
-						j++;
-				        stack_b = stack_b->next;
-				    }
+	int i = 0;
+	int j = 1;
+	i = ft_lstsize(stack_b);
+	printf("\nlist B avec %d arg\n\n", i);
+	
+    while(stack_b) 
+	{
+        printf("lst %d contient %s\n",j ,stack_b->content);
+		j++;
+        stack_b = stack_b->next;
+    }
 }
 
 void print_list (t_list *stack_a, t_list *stack_b)
@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 	rotate_both(pstack_a, pstack_b);
 	print_list(stack_a, stack_b);
 	
-// system("leaks push_swap");	
+ // system("leaks push_swap");	
 }
 
 
