@@ -1,6 +1,8 @@
 NAME 	= 	push_swap
 FILES	= 	creation_stack	\
 			errors			\
+			tools_swap_push \
+			tools_rotate	\
 			push_swap		\
 
 SRCS_DIR = ./
@@ -12,7 +14,7 @@ OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 LIBFT_DIR = ./libft/
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra -g 
+CFLAGS	= -Wall -Werror -Wextra
 LIBRARIES = -lft -L$(LIBFT_DIR)
 HEADERS = -I$(LIBFT_DIR) 
 .c.o		:

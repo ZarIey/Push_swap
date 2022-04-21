@@ -32,7 +32,16 @@ t_list *arg_one(char **argv)
 		ft_lstadd_back(&stack, inter);
 		i++;
 	}
+	errors(split);
 	return (stack);
+}
+
+t_list *creation_b(void *content)
+{
+	t_list *inter;
+
+	inter = ft_lstnew(content);
+	return (inter);
 }
 
 t_list *creation_stack(int argc, char **argv)
@@ -42,11 +51,9 @@ t_list *creation_stack(int argc, char **argv)
 	{
 		int i;
 		t_list *inter;
-	//	t_head head;
 
 		i = 1;
 		stack = ft_lstnew(argv[i]);
-	//	head.head = stack;
 		i++;	
 		while (i < argc)
 		{
@@ -59,6 +66,7 @@ t_list *creation_stack(int argc, char **argv)
 	stack =	arg_one(argv);
 	return (stack);
 }
+
 /*#include <stdio.h>
 
 

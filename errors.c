@@ -6,11 +6,22 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 17:17:49 by ctardy            #+#    #+#             */
-/*   Updated: 2022/04/19 19:20:23 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/04/20 17:56:23 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void 	no_param(char **argv)
+{
+	int i;
+
+	i = 0;
+	while (argv[i])
+		i++;
+	if (i == 1)
+		exit(0);
+} 
 
 int check_letter(char **argv)
 {
@@ -72,6 +83,7 @@ int check_duplicate(char **argv)
 
 int errors(char **argv)
 {
+	no_param(argv);
 	if ((check_letter(argv) == -1) || (check_int_scale(argv) == -1) || (check_duplicate(argv) == -1))
 	{
 		write (1, "Error\n", 6);
