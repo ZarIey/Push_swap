@@ -14,6 +14,22 @@
 
 #include "push_swap.h"
 
+int	check_sorted(t_prog *prog)
+{
+	t_list *inter;
+	inter = prog->stack_a;
+	while (inter->next)
+	{
+//		printf("En AVANT %d\n", inter->content);
+		if (inter->content > inter->next->content)
+			return (-1);
+		inter = inter->next;
+	}
+	printf("I'm already sorted step-brother 🥵\n");
+//	printf("AH PTAIN JSUIS BLOKE LES GAAW\n");
+	return (0);
+}
+
 t_list *arg_one(char **argv)
 {
 	int i;
@@ -23,12 +39,12 @@ t_list *arg_one(char **argv)
 	t_list *inter;
 	char **split;
 
-	split = ft_split(argv[1], ' ');
-	stack = ft_lstnew(split[i]);
+	split = ft_split((argv[1]), ' ');
+	stack = ft_lstnew(ft_atoi(split[i]));
 	i++;
 	while (split[i])
 	{
-		inter = ft_lstnew(split[i]);
+		inter = ft_lstnew(ft_atoi(split[i]));
 		ft_lstadd_back(&stack, inter);
 		i++;
 	}
@@ -40,7 +56,7 @@ t_list *creation_b(void *content)
 {
 	t_list *inter;
 
-	inter = ft_lstnew(content);
+	inter = ft_lstnew(ft_atoi(content));
 	return (inter);
 }
 
@@ -53,11 +69,11 @@ t_list *creation_stack(int argc, char **argv)
 		t_list *inter;
 
 		i = 1;
-		stack = ft_lstnew(argv[i]);
+		stack = ft_lstnew(ft_atoi(argv[i]));
 		i++;	
 		while (i < argc)
 		{
-			inter = ft_lstnew(argv[i]);
+			inter = ft_lstnew(ft_atoi(argv[i]));
 			ft_lstadd_back(&stack, inter);
 			i++;
 		}
@@ -66,26 +82,3 @@ t_list *creation_stack(int argc, char **argv)
 	stack =	arg_one(argv);
 	return (stack);
 }
-
-/*#include <stdio.h>
-
-
-int main (int argc, char **argv)
-{
-	int i = 0;
-	int j = 1;
-	t_list *test;
-//	t_head head;
-	
-	test = creation_stack(argc, argv);
-	i = ft_lstsize(test);
-	printf("list a %d arg\n", i);
-// 	printf("head %s\n", head.head->content);
-
-    while(test) 
-	{
-        printf("lst %d contient %s\n",j, test->content);
-		j++;
-        test = test->next;
-    }
-}*/
