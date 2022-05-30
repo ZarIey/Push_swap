@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:27:22 by ctardy            #+#    #+#             */
-/*   Updated: 2022/05/19 18:56:34 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/05/30 07:09:00 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@
 
 
 			// !!!!!!!!!!!!!!!!!
-void already_sorted(t_list *stack_a);
 void print_list (t_prog *prog);
+int nega(int content);
 			// !!!!!!!!!!!!!!!!!
 
 t_list *creation_stack(int argc, char **argv);
 int errors(char **argv);
-//t_list *creation_b(void *content);
 void	init_rank(t_list *stack_a, t_prog *prog);
 int	find_biggest_asc_order(t_list *start, int set);
 

@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/05/19 18:58:00 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/05/30 07:19:25 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void print_list (t_prog *prog)
 	print_list_b(prog->stack_b);
 }
 
-void	initialise_values(t_prog *prog)
+void	set_up(t_prog *prog)
 {
 	prog->big = find_biggest_asc_order(prog->stack_a, 1);
 	prog->size = size_list(prog->stack_a);
@@ -69,6 +69,7 @@ int main(int argc, char **argv)
 	prog.stack_a = creation_stack(argc, argv);
 	prog.stack_b = NULL;
 //	print_list_a(prog.stack_a);
+//	set_up(&prog);
 	print_list(&prog);
 	if (check_sorted(&prog) < 0)
 	{
@@ -82,31 +83,9 @@ int main(int argc, char **argv)
 //		final_sort(&(prog.stack_a));		
 	}
 	print_list(&prog);
-		
-//		if (size_list(prog.stack_a) == 5)
-//		printf("Oh oh la stack est plus grande que 3 la TDC\n");i
-//		print_list(stack_a, stack_b);
-//	 	initial_push(pstack_a, pstack_b);
-//	 	sort_triple(pstack_a);
-//		printf("avant action :\n");
-//			sort_quint(&prog);
-//		print_list(&prog);
-//		sort(pstack_a, pstack_b);
-		// printf("mini : %d\n",get_mini(stack_a));
-		// printf("maxi : %d\n",get_maxi(stack_a));
-//		print_list(stack_a, stack_b);
-//		push_a(pstack_a, pstack_b);
-//		print_list(stack_a, stack_b);
+// 	system("leaks push_swap");
 	return(0);
 }
-	// already_sorted(stack_a);
-	//sort_triple(pstack_a);
-
-//	push_b(pstack_a, pstack_b);
-//	push_b(pstack_a, pstack_b);
-//	push_a(pstack_a, pstack_b);
-//	print_list(stack_a, stack_b);
 	
-//  system("leaks push_swap");
 
 

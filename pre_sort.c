@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:17:05 by ctardy            #+#    #+#             */
-/*   Updated: 2022/05/19 18:22:35 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/05/30 06:18:33 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ int	find_biggest_asc_order(t_list *start, int set)
 		t = t->next;
 	}
 	if (set)
+	{
 		index_asc_order(start, max_keep, 1);
+		printf("Helloooo\n");
+	}
 	return (max);
 }
 

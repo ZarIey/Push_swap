@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:58:04 by ctardy            #+#    #+#             */
-/*   Updated: 2022/05/19 18:55:58 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/05/30 07:07:07 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,11 @@ int compare_big(int a, int b)
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int nega(int content)
+{
+	if (content < 0)
+		return (content *= -1);
+	return (content);
 }

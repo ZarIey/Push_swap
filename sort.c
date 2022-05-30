@@ -6,17 +6,11 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:55:25 by ctardy            #+#    #+#             */
-/*   Updated: 2022/05/20 16:39:54 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/05/30 07:06:51 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-void already_sorted(t_list *stack_a)
-{	
-	(void)stack_a;
-}
 
 void sort_triple(t_prog *prog)
 {
@@ -45,13 +39,6 @@ void sort_triple(t_prog *prog)
 		reverse_rotate_a(&prog->stack_a);
 		swap_a(&prog->stack_a);	
 	}
-}
-
-int nega(int content)
-{
-	if (content < 0)
-		return (content *= -1);
-	return (content);
 }
 
 int still_here(t_list *stack_a, int index)
@@ -86,19 +73,19 @@ int distance_to_top(t_prog *prog, int tag)
 	return (i);
 }
 
-void sort_five(t_prog *prog)
+void first_sort_five(t_prog *prog)
 {
 	t_list *swap;
 	int min;
 	int atm;
 	
-	while (still_here(prog->stack_a, 0) || still_here(prog->stack_a, prog->total - 1))
+	while (still_here(prog->stack_a, 0) || still_here(prog->stack_a, 1))
 	{
 		swap = prog->stack_a;
 		min = 2147483647;
 		while (swap)
 		{
-			if (swap->index == 0 || swap->index == prog->total - 1)
+			if (swap->index == 0 || swap->index == 1)
 			{
 				atm = distance_to_top(prog, swap->index);
 				if (nega(atm) < nega(min))
@@ -113,8 +100,23 @@ void sort_five(t_prog *prog)
 		if (min > 0)
 			rotate_a(&prog->stack_a);
 	}
-	// sort_triple(prog);
-	// push_a(&prog->stack_a, &prog->stack_b);
-	// push_a(&prog->stack_a, &prog->stack_b);
-	// rotate_a(&prog->stack_a);
+}
+
+void sort_five(t_prog *prog)
+{
+	t_list *stack_a;
+	t_list *stack_b;
+
+	first_sort_five(prog);
+	sort_triple(prog);
+	stack_a = prog->stack_a;
+	stack_b = prog->stack_b;
+	if (stack_b->content > stack_b->next->content)
+	{
+		push_a(&prog->stack_a, &prog->stack_b);
+		push_a(&prog->stack_a, &prog->stack_b);
+		return ;
+	}
+	push_a(&prog->stack_a, &prog->stack_b->next);
+	push_a(&prog->stack_a, &prog->stack_b);
 }
