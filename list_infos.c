@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:58:04 by ctardy            #+#    #+#             */
-/*   Updated: 2022/05/30 07:07:07 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/01 08:44:27 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,32 @@ int get_maxi(t_list *stack_a)
 		stack_a = stack_a->next;
 	}
 	return (maxi);
-}	
+}
+
+t_list *get_last(t_list *stack)
+{
+	t_list *inter;
+
+	inter = stack;
+	if (inter == NULL)
+		return (NULL);
+	while (inter->next)
+		inter = inter->next;
+	return (inter);
+}
 
 int compare_big(int a, int b)
 {
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int compare_little(int a, int b)
+{
+	if (a > b)
+		return (b);
+	return (a);
 }
 
 int nega(int content)

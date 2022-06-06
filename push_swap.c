@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/05/30 07:19:25 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/06 17:51:32 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void print_list_a(t_list *stack_a)
 
     while(stack_a) 
 	{
-        printf("lst %d contient %d\n",j ,stack_a->content);
+        printf("---- lst %d contient %d\n",j ,stack_a->content);
+ //       printf("elle est en stay %d\n",stack_a->stay);
+ //       printf("avec l'index %d\n",stack_a->index);
 		j++;
         stack_a = stack_a->next;
     }
@@ -38,7 +40,9 @@ void print_list_b(t_list *stack_b)
 	
     while(stack_b) 
 	{
-        printf("lst %d contient %d\n",j ,stack_b->content);
+        printf("---- lst %d contient %d\n",j ,stack_b->content);
+  //      printf("elle est en stay %d\n",stack_b->stay);
+ //       printf("avec l'index %d\n",stack_b->index);
 		j++;
         stack_b = stack_b->next;
     }
@@ -50,42 +54,62 @@ void print_list (t_prog *prog)
 	print_list_b(prog->stack_b);
 }
 
+void print_one_list(t_list **stack_a, t_list *list)
+{
+	t_list *inter;
+
+	inter = *stack_a;
+	while (inter && inter != list)
+	{
+		inter = inter->next;
+	}
+	printf("valeur de la list choisis : %d\n", inter->content);
+}
+
 void	set_up(t_prog *prog)
 {
-	prog->big = find_biggest_asc_order(prog->stack_a, 1);
+//	prog->strike = find_biggest_asc_order(prog->stack_a, 1);
 	prog->size = size_list(prog->stack_a);
-	prog->group_count = compare_big(1, (int)(prog->total / 150.0));
-	prog->group_size = prog->total / prog->group_count;
+	prog->group_count = compare_big(1, (int)(prog->size / 150.0));
+	prog->group_size = prog->size / prog->group_count;
 }
 
 int main(int argc, char **argv)
 {
 	t_prog prog;
 	t_list *stack_a;
+//	t_list *start_strike;
 	
 	if (argc <= 1)
 		return (0);
 	errors(argv);
 	prog.stack_a = creation_stack(argc, argv);
 	prog.stack_b = NULL;
-//	print_list_a(prog.stack_a);
-//	set_up(&prog);
 	print_list(&prog);
 	if (check_sorted(&prog) < 0)
 	{
 		stack_a = (prog.stack_a);
 		if (size_list(prog.stack_a) <= 3)
-			sort_triple(&prog);
-		push_bigger(&stack_a);
+			{
+				sort_triple(&prog);
+				print_list(&prog);
+				return (0);
+			}
+		ghost_sorting(&stack_a);
 		init_rank(stack_a, &prog);
 		if (size_list(prog.stack_a) == 5)
+		{
 			sort_five(&prog);
-//		final_sort(&(prog.stack_a));		
+			return (0);
+		}
+//		start_strike = init_sequence(&prog);
+//		print_one_list(&prog.stack_a, start_strike);
+		set_up(&prog);
+		rotate_sequence(&prog);
+		print_list(&prog);		
+//		final_sort(&prog);
 	}
-	print_list(&prog);
-// 	system("leaks push_swap");
+ 	// system("leaks push_swap");
 	return(0);
 }
-	
-
 

@@ -5,6 +5,8 @@ FILES	= 	creation_stack	\
 			push_swap		\
 			list_infos		\
 			pre_sort		\
+			final_sort		\
+			find_sequence	\
 			./tools/tools_rotate		\
 			./tools/tools_swap_push		\
 			./tools/tools_reverse_rotate
@@ -68,6 +70,12 @@ ayaya 		:
 			echo "	⣿⣷⡘⣿⡀⢻⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣿⣿⣿⣿⣷⡿⠟⠉⠄⠄⠄⠄⡄⢀" ; \
 			echo "	⣿⣿⣷⡈⢷⡀⠙⠛⠻⠿⠿⠿⠿⠿⠷⠾⠿⠟⣛⣋⣥⣶⣄⠄⢀⣄⠹⣦⢹⣿ " ; \
 			echo $$i AYAYA\\n; \
+			done
+
+julien		:
+			@for (( i=1; i<=10000; i++ )) \
+			do \
+				echo " Ok blc $$i fois 👍" ; \
 			done
 
 sonic		: 
