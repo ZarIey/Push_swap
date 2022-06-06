@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 14:26:46 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/06 17:36:47 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/06 18:23:30 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int secure_sequence(t_prog *prog)
 
 	stack_save = init_sequence(prog);
 	distance = distance_to_top(prog, stack_save->index);
-	printf("Hey la distance est a %d\n", distance);
+//	printf("Hey la distance est a %d\n", distance);
 	while (stack_a)
 	{
 		while (i < distance)
@@ -104,23 +104,23 @@ void rotate_sequence(t_prog *prog)
 	stack_a = prog->stack_a;
 	stack_save = init_sequence(prog);	
 	i = distance_to_top(prog, stack_save->index);
-	printf("Valeur de i : %d\n", i);
-	print_one_list(&stack_a, stack_save);
+//	printf("Valeur de i : %d\n", i);
+//	print_one_list(&stack_a, stack_save);
 	j = i + prog->strike;
 	k = prog->size - j;
-	printf("Valeur de size : %d\n", prog->size);
-	printf("Valeur de strike : %d\n", prog->strike);
-	printf("Valeur de j : %d\n", j);
-	printf("Valeur de k : %d\n", k);
+//	printf("Valeur de size : %d\n", prog->size);
+//	printf("Valeur de strike : %d\n", prog->strike);
+//	printf("Valeur de j : %d\n", j);
+//	printf("Valeur de k : %d\n", k);
 //	printf("avant secure\n");
 	secure_sequence(prog);
 	printf("apres secure\n");
 	if (k > i)
 	{
-	printf("1er cas\n");
+//	printf("1er cas\n");
 		while (j >= 0)
 		{
-		printf("boucle cas 1\n");
+//		printf("boucle cas 1\n");
 			rotate_a(&prog->stack_a);
 			j--;
 		}
@@ -128,11 +128,11 @@ void rotate_sequence(t_prog *prog)
 	}
 	while (k > 1)
 	{
-		printf("boucle cas 2\n");
+//		printf("boucle cas 2\n");
 		reverse_rotate_a(&prog->stack_a);
 		k--;
 	}
-	printf("fini\n");
+//	printf("fini\n");
 }
 
 // 	if (i >= prog->size)

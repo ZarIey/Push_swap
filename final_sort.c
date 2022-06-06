@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:28:35 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/06 17:11:27 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/06 20:21:30 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void all_in_b(t_prog *prog)
 	while (stack_a && stack_a->stay != 1)
 	{
 		push_b(&prog->stack_a, &prog->stack_b);
-		stack_a = stack_a->next;	
+		stack_a = prog->stack_a;
 	}
+	prog->size = size_list(stack_a);
 	printf("valeur de size %d\n", prog->size);
-	sort_triple(prog);
-	print_list(prog);
+//	print_list(prog);
 }
 
 
@@ -238,7 +238,7 @@ void keep_rotating (t_prog *prog, int rot_a, int rot_b)
 // 	return (current_max[1]);
 // }
 
-int calcul_rotation(t_list *stack_a, t_list *stack_b, t_list *inter)
+int calcul_rotation_a(t_prog *prog, t_list *stack_a, t_list *stack_b, t_list *inter)
 {
 	int place;
 	int place_max;
@@ -246,35 +246,122 @@ int calcul_rotation(t_list *stack_a, t_list *stack_b, t_list *inter)
 	t_list *pre;
 	t_list *cur;
 	
+
+	(void)stack_b;
 	pre = get_last(stack_a);
 	cur = stack_a;
 	i = 0;
 	place_max = INT_MAX;
+	printf("size %d\n", prog->size);
+	while (cur)
+	{
+		if ((pre->index > cur->index && (inter->index < cur->index || inter->index > pre->index)) 
+			|| (inter->index > pre->index && inter->index < cur->index))
+		{
+			place = i;
+			if (place > prog->size / 2)
+				place -= prog->size;
+			if (nega(place) < place_max)
+				place_max = place;
+		}
+		i++;
+		pre = cur;
+		cur = cur->next;		
+	}
+	return (place_max);
+}
+
+t_list *take_fastest_moove(t_list *stack_b)
+{
+	t_list *save_list;
+	int i;
+	int j;
+	int k[2];
+	
+	save_list = stack_b;
+	k[0] = INT_MAX;
 	while (stack_b)
 	{
-		if ((!cur && inter->index > pre->index) || (inter->index > pre->index && inter->index < cur->index))
-			place = i;
-		i++;
-		stack_b = stack_b->next;		
+	printf("coucou\n");
+		i = stack_b->rot_a;
+		j = stack_b->rot_b;
+		k[1] = nega(i) + nega(j);
+		printf("Valeur de k[1] %d\n", k[1]);
+		if (k[1] < k[0])
+		{
+			k[0] = k[1];
+			save_list = stack_b;
+		}
+		stack_b = stack_b->next;
 	}
-	return (place);
+	return (save_list);
+}
+
+int calcul_rotation_b(int rot_b, int size)
+{
+	int i;
+
+	i = rot_b;
+	if (i > size / 2)
+		i -= size;
+	return (i);
+}
+
+void print_one_list2(t_list **stack_a, t_list *list)
+{
+	t_list *inter;
+
+	inter = *stack_a;
+	while (inter && inter != list)
+	{
+		inter = inter->next;
+	}
+	printf("valeur de la list choisis : %d\n", inter->content);
+}
+
+void save_rot(t_prog *prog)
+{
+	t_list *stack_b;
+	int i;
+	int size;
+
+	stack_b = prog->stack_b;
+	i = 0;
+	size = size_list(stack_b);
+	while (stack_b)
+	{
+		stack_b->rot_a = calcul_rotation_a(prog, prog->stack_a, prog->stack_b, stack_b);
+		printf("Valeur de rot_a : %d\n", stack_b->rot_a);
+		stack_b->rot_b = calcul_rotation_b(i, size);
+		i++;
+		printf("Valeur de rot_b : %d\n", stack_b->rot_b);
+		stack_b = stack_b->next;
+	}
+	
 }
 
 void final_sort(t_prog *prog)
 {
+
+	t_list *save;
+
 	t_list *stack_b;
-//	int rot_a;
-//	int rot_b;
 	int i;
 
 	i = 0;
-	
-	stack_b = prog->stack_b;
 	all_in_b(prog);
+	stack_b = prog->stack_b;
+//	print_list(prog);
 	while (stack_b)
 	{
-		stack_b->rot_a = calcul_rotation(prog->stack_a, prog->stack_b, stack_b);
-		stack_b->rot_b = i++;
-		stack_b = stack_b->next;
+		save_rot(prog);
+		save = take_fastest_moove(prog->stack_b);
+		keep_rotating(prog, save->rot_a, save->rot_b);
+		push_a(&prog->stack_a, &prog->stack_b);
+	//	print_one_list2(&prog->stack_b, save);
+	//	printf("hey oh rot_a %d et rot_b %d\n", save->rot_a, save->rot_b);
+		print_list(prog);
+		//	keep_rotating(prog, stack_b->rot_a, stack_b->rot_b);
+		stack_b = prog->stack_b;
 	}
 }

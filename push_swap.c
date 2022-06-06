@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/06 17:51:32 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/06 18:17:23 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void print_list_a(t_list *stack_a)
     while(stack_a) 
 	{
         printf("---- lst %d contient %d\n",j ,stack_a->content);
- //       printf("elle est en stay %d\n",stack_a->stay);
+        printf("elle est en stay %d\n",stack_a->stay);
  //       printf("avec l'index %d\n",stack_a->index);
 		j++;
         stack_a = stack_a->next;
@@ -92,7 +92,7 @@ int main(int argc, char **argv)
 		if (size_list(prog.stack_a) <= 3)
 			{
 				sort_triple(&prog);
-				print_list(&prog);
+//				print_list(&prog);
 				return (0);
 			}
 		ghost_sorting(&stack_a);
@@ -106,8 +106,9 @@ int main(int argc, char **argv)
 //		print_one_list(&prog.stack_a, start_strike);
 		set_up(&prog);
 		rotate_sequence(&prog);
-		print_list(&prog);		
-//		final_sort(&prog);
+//		print_list(&prog);		
+		final_sort(&prog);
+//		print_list(&prog);		
 	}
  	// system("leaks push_swap");
 	return(0);
