@@ -20,7 +20,7 @@ OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 LIBFT_DIR = ./libft/
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g 
 LIBRARIES = -lft -L$(LIBFT_DIR)
 HEADERS = -I$(LIBFT_DIR)
 .c.o		:

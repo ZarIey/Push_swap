@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 13:55:25 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/06 17:42:25 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/07 18:54:36 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int still_here(t_list *stack_a, int index)
 int distance_to_top(t_prog *prog, int tag)
 {
 	int i;
-	int size;
+//	int size;
 	t_list *stack_a;
 	
 	stack_a = prog->stack_a;
-	size = size_list(stack_a);
+//	size = size_list(stack_a);
 	i = 0;
 	while (stack_a)
 	{
@@ -78,18 +78,23 @@ void first_sort_five(t_prog *prog)
 {
 	t_list *stack_a;
 	int rot_a;
-
+	int size;
+	
 	stack_a = prog->stack_a;
+	size = 5;
 	rot_a = distance_to_top(prog, 0);
-	if (rot_a > size_list(stack_a) / 2)
-		rot_a -= size_list(stack_a);
+//	printf("rot_a %d\n", rot_a);
+	if (rot_a > size / 2)
+		rot_a -= size;
 	keep_rotating(prog, rot_a, 0);
 	push_b(&prog->stack_a, &prog->stack_b);
-	print_list(prog);
+//	print_list(prog);
+size = 4;
 	rot_a = distance_to_top(prog, 1);
-	if (rot_a > (size_list(stack_a) / 2))
-		rot_a -= size_list(stack_a);
-	keep_rotating(prog, rot_a, 0);
+//	printf("rot_a %d\n", rot_a);
+	if (rot_a > (size / 2))
+		rot_a -= size;
+	keep_rotating(prog, rot_a, 1);
 	push_b(&prog->stack_a, &prog->stack_b);
 }
 
@@ -100,7 +105,7 @@ void sort_five(t_prog *prog)
 
 	first_sort_five(prog);
 	sort_triple(prog);
-	print_list(prog);
+//	print_list(prog);
 	stack_b = prog->stack_b;
 	while (stack_b)
 	{
@@ -109,7 +114,7 @@ void sort_five(t_prog *prog)
 		stack_b = stack_b->next;
 		push_a(&prog->stack_a, &prog->stack_b);
 	}
-	print_list(prog);
+//	print_list(prog);
 }
 
 // void first_sort_five(t_prog *prog)

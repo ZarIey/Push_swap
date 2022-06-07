@@ -25,7 +25,7 @@ int	check_sorted(t_prog *prog)
 			return (-1);
 		inter = inter->next;
 	}
-	printf("I'm already sorted step-brother 🥵\n");
+//	printf("I'm already sorted step-brother 🥵\n");
 //	printf("AH PTAIN JSUIS BLOKE LES GAAW\n");
 	return (0);
 }

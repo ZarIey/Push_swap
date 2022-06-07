@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/06 18:17:23 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/07 20:05:36 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void print_list_a(t_list *stack_a)
     while(stack_a) 
 	{
         printf("---- lst %d contient %d\n",j ,stack_a->content);
-        printf("elle est en stay %d\n",stack_a->stay);
+ //       printf("elle est en stay %d\n",stack_a->stay);
  //       printf("avec l'index %d\n",stack_a->index);
 		j++;
         stack_a = stack_a->next;
@@ -85,14 +85,13 @@ int main(int argc, char **argv)
 	errors(argv);
 	prog.stack_a = creation_stack(argc, argv);
 	prog.stack_b = NULL;
-	print_list(&prog);
+//	print_list(&prog);
 	if (check_sorted(&prog) < 0)
 	{
 		stack_a = (prog.stack_a);
 		if (size_list(prog.stack_a) <= 3)
 			{
 				sort_triple(&prog);
-//				print_list(&prog);
 				return (0);
 			}
 		ghost_sorting(&stack_a);
@@ -100,17 +99,21 @@ int main(int argc, char **argv)
 		if (size_list(prog.stack_a) == 5)
 		{
 			sort_five(&prog);
+		//	print_list(&prog);		
 			return (0);
 		}
+		set_up(&prog);
 //		start_strike = init_sequence(&prog);
 //		print_one_list(&prog.stack_a, start_strike);
-		set_up(&prog);
 		rotate_sequence(&prog);
+//		printf("YO\n");
 //		print_list(&prog);		
 		final_sort(&prog);
-//		print_list(&prog);		
+		print_list(&prog);
+//		printf ("stack trie avec mouvements 🥵\n\n");		
 	}
  	// system("leaks push_swap");
+	 
 	return(0);
 }
 
