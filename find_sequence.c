@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 14:26:46 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/07 19:57:17 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/08 15:03:31 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,25 @@ int check_if_sequence(t_prog *prog)
 	}
 	printf("Valeur de la sequence %d\n", i);
 	return (i);
+}
+
+
+int swap_tester(t_list *stack)
+{
+	t_list inter;
+	t_list inter2;
+	int swap;
+	int swap2;
+	
+	inter.next = &inter2;
+	inter.index = stack->next->index;
+	inter2.next = stack->next->next;
+	inter2.index = stack->index;  
+	// swap = find_biggest_asc_order(stack, 0);
+	// swap2 = find_biggest_asc_order(&inter, 0);
+	if (swap2 > swap)
+		return (1);
+	return (0);	
 }
 
 t_list *init_sequence(t_prog *prog)
