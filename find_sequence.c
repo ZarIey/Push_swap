@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 14:26:46 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/08 15:03:31 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/09 15:52:36 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,7 @@ int check_if_sequence(t_prog *prog)
 			i++;
 		stack_a = stack_a->next;
 	}
-	printf("Valeur de la sequence %d\n", i);
 	return (i);
-}
-
-
-int swap_tester(t_list *stack)
-{
-	t_list inter;
-	t_list inter2;
-	int swap;
-	int swap2;
-	
-	inter.next = &inter2;
-	inter.index = stack->next->index;
-	inter2.next = stack->next->next;
-	inter2.index = stack->index;  
-	// swap = find_biggest_asc_order(stack, 0);
-	// swap2 = find_biggest_asc_order(&inter, 0);
-	if (swap2 > swap)
-		return (1);
-	return (0);	
 }
 
 t_list *init_sequence(t_prog *prog)
@@ -72,7 +52,6 @@ t_list *init_sequence(t_prog *prog)
 
 	stack_a = prog->stack_a;
 	stack_first = prog->stack_a;
-//	stack_save = NULL;
 	prog->strike = -1;
 	while (stack_a->next)
 	{
@@ -83,7 +62,6 @@ t_list *init_sequence(t_prog *prog)
 				stack_first = stack_a;
 			i++;
 			stack_a = stack_a->next;
-		printf("valeur de i dans la strike : %d\n", i);
 		}
 		if (prog->strike <= i)
 		{
@@ -93,7 +71,6 @@ t_list *init_sequence(t_prog *prog)
 		if (i == 0)
 			stack_a = stack_a->next;
 	}
-	print_one_list(&prog->stack_a, stack_save);
 	return (stack_save);
 }
 
@@ -142,32 +119,21 @@ void rotate_sequence(t_prog *prog)
 	stack_a = prog->stack_a;
 	stack_save = init_sequence(prog);
 	i = distance_to_top(prog, stack_save->index);
-//	printf("Valeur de i : %d\n", i);
-//	print_one_list(&stack_a, stack_save);
 	j = i + prog->strike;
 	k = prog->size - j;
-//	printf("Valeur de size : %d\n", prog->size);
-//	printf("Valeur de strike : %d\n", prog->strike);
-//	printf("Valeur de j : %d\n", j);
-//	printf("Valeur de k : %d\n", k);
-//	printf("avant secure\n");
 	secure_sequence(prog);
-	printf("apres secure\n");
 	if (check_if_sequence(prog) == 0)
 	{
-		printf("Je rentre la QUE en chaine inverse\n");
 		l = size_list(stack_a);
 		while (l > 0)
 		{
 			push_b(&prog->stack_a, &prog->stack_b);
-			print_list(prog);
 			l--;
 		}
 		l = size_list(prog->stack_b);
 		while (l > 0)
 		{
 			rotate_b(&prog->stack_b);
-			print_list(prog);
 			l--;
 		}
 		push_a(&prog->stack_a, &prog->stack_b);
@@ -178,16 +144,12 @@ void rotate_sequence(t_prog *prog)
 				push_a(&prog->stack_a, &prog->stack_b);	
 				rotate_a(&prog->stack_a);
 			}
-		print_list(prog);
 		exit(0);
 	}
-//	printf("Je suis quand meme la ? \n");
 	if (k > i)
 	{
-//	printf("1er cas\n");
 		while (j >= 0)
 		{
-//		printf("boucle cas 1\n");
 			rotate_a(&prog->stack_a);
 			j--;
 		}
@@ -195,29 +157,7 @@ void rotate_sequence(t_prog *prog)
 	}
 	while (k > 1)
 	{
-//		printf("boucle cas 2\n");
 		reverse_rotate_a(&prog->stack_a);
 		k--;
 	}
-//	printf("plus maintenant\n");
-//	printf("fini\n");
 }
-
-// 	if (i >= prog->size)
-// 	{
-// 		i -= prog->size;
-// 		while (i < (nega(prog->strike)))
-// 		{
-// 			reverse_rotate_a(&prog->stack_a);
-// 			i++;
-// 		}
-// 		return ;
-// 	}
-// 	while (i > (i - (prog->strike)))
-// 	{
-// 		rotate_a(&prog->stack_a);
-// 		i--;
-// 	}
-
-
-
