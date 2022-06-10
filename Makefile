@@ -5,6 +5,7 @@ FILES	= 	creation_stack	\
 			push_swap		\
 			list_infos		\
 			pre_sort		\
+			rotating_calcul	\
 			final_sort		\
 			find_sequence	\
 			./tools/tools_rotate		\

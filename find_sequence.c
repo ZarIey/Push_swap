@@ -6,18 +6,15 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 14:26:46 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/09 15:52:36 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/10 17:59:07 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void print_one_list(t_list **stack_a, t_list *list); 
-
-void secure_stay(t_prog *prog)
+void	secure_stay(t_prog *prog)
 {
-	t_list *stack_a;
+	t_list	*stack_a;
 
 	stack_a = prog->stack_a;
 	while (stack_a)
@@ -27,38 +24,36 @@ void secure_stay(t_prog *prog)
 	}
 }
 
-int check_if_sequence(t_prog *prog)
+int	check_if_sequence(t_prog *prog)
 {
-	t_list *stack_a;
-	int i;
-	
+	t_list	*stack_a;
+	int		i;
+
 	stack_a = prog->stack_a;
 	i = 0;
 	while (stack_a->next)
 	{
-		if(stack_a->next && stack_a->content < stack_a->next->content)
+		if (stack_a->next && stack_a->content < stack_a->next->content)
 			i++;
 		stack_a = stack_a->next;
 	}
 	return (i);
 }
 
-t_list *init_sequence(t_prog *prog)
+t_list	*init_sequence(t_prog *prog, t_list *stack_a)
 {
-	t_list *stack_a;
-	t_list *stack_first;
-	t_list *stack_save;
-	int i;
+	t_list	*stack_first;
+	t_list	*stack_save;
+	int		i;
 
-	stack_a = prog->stack_a;
-	stack_first = prog->stack_a;
+	stack_first = stack_a;
 	prog->strike = -1;
 	while (stack_a->next)
 	{
 		i = 0;
 		while (stack_a->next && stack_a->content < stack_a->next->content)
 		{
-			 if (i == 0)
+			if (i == 0)
 				stack_first = stack_a;
 			i++;
 			stack_a = stack_a->next;
@@ -74,19 +69,19 @@ t_list *init_sequence(t_prog *prog)
 	return (stack_save);
 }
 
-int secure_sequence(t_prog *prog)
+int	secure_sequence(t_prog *prog)
 {
-	t_list *stack_a;
-	t_list *stack_save;
-	int distance;
-	int i;
-	int j;
+	t_list	*stack_a;
+	t_list	*stack_save;
+	int		distance;
+	int		i;
+	int		j;
 
 	stack_save = NULL;
 	stack_a = prog->stack_a;
 	i = 0;
 	j = 0;
-	stack_save = init_sequence(prog);
+	stack_save = init_sequence(prog, prog->stack_a);
 	distance = distance_to_top(prog, stack_save->index);
 	while (stack_a)
 	{
@@ -107,17 +102,17 @@ int secure_sequence(t_prog *prog)
 	return (i);
 }
 
-void rotate_sequence(t_prog *prog)
+void	rotate_sequence(t_prog *prog)
 {
-	int i;
-	int j;
-	int k;
-	int l;
-	t_list *stack_save;
-	t_list *stack_a;
+	t_list	*stack_a;
+	t_list	*stack_save;
+	int		i;
+	int		j;
+	int		k;
+	int		l;
 
 	stack_a = prog->stack_a;
-	stack_save = init_sequence(prog);
+	stack_save = init_sequence(prog, prog->stack_a);
 	i = distance_to_top(prog, stack_save->index);
 	j = i + prog->strike;
 	k = prog->size - j;

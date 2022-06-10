@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:27:22 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/06 17:08:14 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/10 17:58:35 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,15 @@ void print_list (t_prog *prog);
 int nega(int content);
 			// !!!!!!!!!!!!!!!!!
 
+void	all_in_b(t_prog *prog);
+void	double_rotate(t_prog *prog, int *rot_a, int *rot_b);
+void	keep_rotating(t_prog *prog, int rot_a, int rot_b);
+int	verif_place(t_list *pre, t_list *cur, t_list *x);
+int	calcul_rotation_a(t_prog *prog, t_list *stack_a, t_list *x);
+int	calcul_rotation_b(int rot_b, int size);
+
 int secure_sequence(t_prog *prog);
-t_list *init_sequence(t_prog *prog);
+t_list *init_sequence(t_prog *prog, t_list *stack_a);
 void rotate_sequence(t_prog *prog);
 void keep_rotating (t_prog *prog, int rot_a, int rot_b);
 
