@@ -6,39 +6,11 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 14:26:46 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 17:59:07 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/10 18:15:56 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	secure_stay(t_prog *prog)
-{
-	t_list	*stack_a;
-
-	stack_a = prog->stack_a;
-	while (stack_a)
-	{
-		stack_a->stay = 0;
-		stack_a = stack_a->next;
-	}
-}
-
-int	check_if_sequence(t_prog *prog)
-{
-	t_list	*stack_a;
-	int		i;
-
-	stack_a = prog->stack_a;
-	i = 0;
-	while (stack_a->next)
-	{
-		if (stack_a->next && stack_a->content < stack_a->next->content)
-			i++;
-		stack_a = stack_a->next;
-	}
-	return (i);
-}
 
 t_list	*init_sequence(t_prog *prog, t_list *stack_a)
 {
@@ -85,62 +57,48 @@ int	secure_sequence(t_prog *prog)
 	distance = distance_to_top(prog, stack_save->index);
 	while (stack_a)
 	{
-		while (i < distance)
-		{
+		while (i++ < distance)
 			stack_a = stack_a->next;
-			i++;
-		}
 		secure_stay(prog);
-		while (stack_a && j <= prog->strike)
+		while (stack_a && j++ <= prog->strike)
 		{
 			stack_a->stay = 1;
 			stack_a = stack_a->next;
-			j++;
 		}
-		break;
+		break ;
 	}
 	return (i);
 }
 
-void	rotate_sequence(t_prog *prog)
+void	all_reverse(t_prog *prog, t_list *stack_a)
 {
-	t_list	*stack_a;
-	t_list	*stack_save;
-	int		i;
-	int		j;
-	int		k;
-	int		l;
+	int	l;
 
-	stack_a = prog->stack_a;
-	stack_save = init_sequence(prog, prog->stack_a);
-	i = distance_to_top(prog, stack_save->index);
-	j = i + prog->strike;
-	k = prog->size - j;
-	secure_sequence(prog);
-	if (check_if_sequence(prog) == 0)
+	l = size_list(stack_a);
+	while (l > 0)
 	{
-		l = size_list(stack_a);
-		while (l > 0)
-		{
-			push_b(&prog->stack_a, &prog->stack_b);
-			l--;
-		}
-		l = size_list(prog->stack_b);
-		while (l > 0)
-		{
-			rotate_b(&prog->stack_b);
-			l--;
-		}
-		push_a(&prog->stack_a, &prog->stack_b);
-		push_a(&prog->stack_a, &prog->stack_b);
-		swap_a(&prog->stack_a);
-		while (size_list(prog->stack_b) > 0)
-			{
-				push_a(&prog->stack_a, &prog->stack_b);	
-				rotate_a(&prog->stack_a);
-			}
-		exit(0);
+		push_b(&prog->stack_a, &prog->stack_b);
+		l--;
 	}
+	l = size_list(prog->stack_b);
+	while (l > 0)
+	{
+		rotate_b(&prog->stack_b);
+		l--;
+	}
+	push_a(&prog->stack_a, &prog->stack_b);
+	push_a(&prog->stack_a, &prog->stack_b);
+	swap_a(&prog->stack_a);
+	while (size_list(prog->stack_b) > 0)
+	{
+		push_a(&prog->stack_a, &prog->stack_b);
+		rotate_a(&prog->stack_a);
+	}
+	exit(0);
+}
+
+void	clean_order(t_prog *prog, int i, int j, int k)
+{
 	if (k > i)
 	{
 		while (j >= 0)
@@ -155,4 +113,23 @@ void	rotate_sequence(t_prog *prog)
 		reverse_rotate_a(&prog->stack_a);
 		k--;
 	}
+}
+
+void	rotate_sequence(t_prog *prog)
+{
+	t_list	*stack_a;
+	t_list	*stack_save;
+	int		i;
+	int		j;
+	int		k;
+
+	stack_a = prog->stack_a;
+	stack_save = init_sequence(prog, prog->stack_a);
+	i = distance_to_top(prog, stack_save->index);
+	j = i + prog->strike;
+	k = prog->size - j;
+	secure_sequence(prog);
+	if (check_if_sequence(prog) == 0)
+		all_reverse(prog, prog->stack_a);
+	clean_order(prog, i, j, k);
 }

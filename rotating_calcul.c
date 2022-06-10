@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotating_cacul.c                                   :+:      :+:    :+:   */
+/*   rotating_calcul.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:46:33 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 17:47:08 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/10 18:56:04 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,6 @@ void	all_in_b(t_prog *prog)
 		stack_a = prog->stack_a;
 	}
 	prog->size = size_list(stack_a);
-}
-
-void	double_rotate(t_prog *prog, int *rot_a, int *rot_b)
-{
-	while (*rot_a > 0 && *rot_b > 0)
-	{
-		rotate_both(prog, *rot_a, *rot_b);
-		(*rot_a)--;
-		(*rot_b)--;
-	}
-	while (*rot_a < 0 && *rot_b < 0)
-	{
-		reverse_rotate_both(prog, *rot_a, *rot_b);
-		(*rot_a)++;
-		(*rot_b)++;
-	}
 }
 
 void	keep_rotating(t_prog *prog, int rot_a, int rot_b)

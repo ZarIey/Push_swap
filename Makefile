@@ -3,10 +3,13 @@ FILES	= 	creation_stack	\
 			errors			\
 			sort			\
 			push_swap		\
+			utils_list		\
 			list_infos		\
 			pre_sort		\
+			double_rotate	\
 			rotating_calcul	\
 			final_sort		\
+			utils_sequence	\
 			find_sequence	\
 			./tools/tools_rotate		\
 			./tools/tools_swap_push		\
