@@ -6,13 +6,22 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 13:06:26 by ctardy            #+#    #+#             */
-/*   Updated: 2022/04/19 18:36:45 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/10 14:58:30 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long int	ft_atoi(const char *str)
+void	checker_atoi(char c)
+{
+	if (c < 48 || c > 57)
+	{
+		ft_putstr_fd("Error\n", 1);
+		exit(0);
+	}
+}
+
+long long int	ft_atoi(char *str)
 {
 	int				i;	
 	long long int	nombre;
@@ -29,6 +38,7 @@ long long int	ft_atoi(const char *str)
 			sign *= -1;
 		i++;
 	}
+	checker_atoi(str[i]);
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		nombre = nombre * 10 + str[i] - 48;
@@ -36,11 +46,3 @@ long long int	ft_atoi(const char *str)
 	}
 	return (nombre * sign);
 }
-/*
-int main()
-{
-    char *str = "2147483647";
-    printf("%d\n", ft_atoi(str));
-    printf("%d\n", atoi(str));
-}
-*/
