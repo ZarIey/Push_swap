@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utlis_sequence.c                                   :+:      :+:    :+:   */
+/*   utils_sequence.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:15:37 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 18:17:59 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/11 16:11:43 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ void	secure_stay(t_prog *prog)
 	{
 		stack_a->stay = 0;
 		stack_a = stack_a->next;
+	}
+}
+
+void	init_swap(t_prog *prog)
+{
+	t_list	*stack_b;
+
+	stack_b = prog->stack_b;
+	while (stack_b)
+	{
+		stack_b->swap_a = 0;
+		stack_b = stack_b->next;
 	}
 }
 

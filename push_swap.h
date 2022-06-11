@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:27:22 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 19:50:15 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/11 19:18:06 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			get_mini(t_list *stack_a);
 int			get_maxi(t_list *stack_a);
 t_list		*get_last(t_list *stack);
 int			nega(int content);
+void		error(void);
 
 int			errors(char **argv);
 int			check_sorted(t_prog *prog);
@@ -52,6 +53,12 @@ void		keep_rotating(t_prog *prog, int rot_a, int rot_b);
 t_list		*init_sequence(t_prog *prog, t_list *stack_a);
 void		final_sort(t_prog *prog);
 
+void		fake_swap_a(t_list **pstack_a);
+void		fake_swap_b(t_list **pstack_b);
+void		init_swap(t_prog *prog);
+void		swap_test_a(t_prog *prog, t_list *x);
+void		swap_test_b(t_prog *prog, t_list *stack_b, t_list *x, int rot_b);
+
 void		swap_a(t_list **pstack_a);
 void		swap_b(t_list **pstack_b);
 void		swap_both(t_list **pstack_a, t_list **pstack_b);
@@ -65,5 +72,7 @@ void		rotate_both(t_prog *prog, int rot_a, int rot_b);
 void		reverse_rotate_a(t_list **pstack_a);
 void		reverse_rotate_b(t_list **pstack_b);
 void		reverse_rotate_both(t_prog *prog, int rot_a, int rot_b);
+
+void		print_list(t_prog *prog);
 
 #endif

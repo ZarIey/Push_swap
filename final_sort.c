@@ -6,13 +6,34 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:28:35 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 17:52:05 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/11 19:16:38 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*take_fastest_moove(t_list *stack_b)
+int	distance_to_top_b(t_prog *prog, int tag)
+{
+	t_list	*stack_b;
+	int		i;
+	int		size;
+
+	size = size_list(prog->stack_b);
+	stack_b = prog->stack_b;
+	i = 0;
+	while (stack_b)
+	{
+		if (stack_b->index == tag)
+			break ;
+		i++;
+		stack_b = stack_b->next;
+	}
+	if (i >= size / 2)
+		i -= size;
+	return (i);
+}
+
+t_list	*take_fastest_moove(t_prog *prog, t_list *stack_b)
 {
 	t_list	*save_list;
 	int		i;
@@ -29,6 +50,7 @@ t_list	*take_fastest_moove(t_list *stack_b)
 		if (k[1] < k[0])
 		{
 			k[0] = k[1];
+			prog->moov = k[0];
 			save_list = stack_b;
 		}
 		stack_b = stack_b->next;
@@ -59,18 +81,25 @@ void	final_sort(t_prog *prog)
 	t_list	*save;
 	t_list	*stack_b;
 	int		i;
+	int		j;
+	int		size;
 
 	i = 0;
 	all_in_b(prog);
 	stack_b = prog->stack_b;
 	while (stack_b)
 	{
+		init_swap(prog);
+		size = size_list(stack_b);
 		save_rot(prog);
-		save = take_fastest_moove(prog->stack_b);
+		save = take_fastest_moove(prog, prog->stack_b);
 		keep_rotating(prog, save->rot_a, save->rot_b);
 		push_a(&prog->stack_a, &prog->stack_b);
 		prog->size++;
 		stack_b = prog->stack_b;
 	}
-	keep_rotating(prog, distance_to_top(prog, 0), 0);
+	j = distance_to_top(prog, 0);
+	if (j >= size_list(prog->stack_a) / 2)
+		j -= size_list(prog->stack_a);
+	keep_rotating(prog, j, 0);
 }

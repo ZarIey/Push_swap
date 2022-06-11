@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 17:17:49 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 15:03:31 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/11 19:10:23 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ int	errors(char **argv)
 	no_param(argv);
 	if ((check_letter(argv) == -1) || (check_int_scale(argv) == -1)
 		|| (check_duplicate(argv) == -1))
-	{
-		write (1, "Error\n", 6);
-		exit (0);
-	}
+		error();
 	return (0);
 }

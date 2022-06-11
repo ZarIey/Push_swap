@@ -11,6 +11,7 @@ FILES	= 	creation_stack	\
 			final_sort		\
 			utils_sequence	\
 			find_sequence	\
+			swap_test		\
 			./tools/tools_rotate		\
 			./tools/tools_swap_push		\
 			./tools/tools_reverse_rotate

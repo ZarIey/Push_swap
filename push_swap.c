@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 19:09:24 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/11 19:19:52 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,8 @@ int	main(int argc, char **argv)
 	t_prog	prog;
 	t_list	*stack_a;
 
-	if (argc == 1)
-		exit(0);
-	if (check_argv(argc, argv) > 0)
-		exit(0);
+	if (check_argv(argc, argv) > 0 || argc == 1)
+		error();
 	errors(argv);
 	prog.stack_a = creation_stack(argc, argv);
 	prog.stack_b = NULL;
@@ -91,5 +89,6 @@ int	main(int argc, char **argv)
 		rotate_sequence(&prog);
 		final_sort(&prog);
 	}
+//	system ("leaks push_swap");
 	return (0);
 }

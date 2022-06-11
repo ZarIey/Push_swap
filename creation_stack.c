@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 10:25:29 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 15:03:06 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/11 18:58:39 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ t_list	*arg_one(char **argv)
 		i++;
 	}
 	errors(split);
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 	return (stack);
 }
 
