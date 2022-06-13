@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:36:28 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/09 17:27:40 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/12 16:47:28 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	swap_both(t_list **pstack_a, t_list **pstack_b)
 	b = swap->next->content;
 	swap->next->content = a;
 	swap->content = b;
-	ft_putstr_fd("ss\n", 1);
 	return ;
 }
 
