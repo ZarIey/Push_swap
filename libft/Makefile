@@ -42,6 +42,8 @@ FILES	= 	ft_atoi			\
 			ft_lstnew		\
 			ft_lstsize		\
 			ft_lstdel_first	\
+			get_next_line	\
+			get_next_line_utils	\
 			ft_lstadd_front_content
 
 

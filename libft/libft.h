@@ -6,13 +6,14 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:12:20 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/10 19:47:36 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/12 16:17:24 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define BUFFER_SIZE 5
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
@@ -86,5 +87,8 @@ t_list			*ft_lstlast(t_list *lst);
 void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstdel_first(t_list **pstack);
 void			ft_lstadd_front_content(t_list **pstack, int content);
+
+char			*get_next_line(int fd);
+char			*ft_eof(char **line, char **buf);
 
 #endif
