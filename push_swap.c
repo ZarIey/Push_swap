@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/11 19:19:52 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/12 16:45:33 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ int	main(int argc, char **argv)
 		rotate_sequence(&prog);
 		final_sort(&prog);
 	}
-//	system ("leaks push_swap");
 	return (0);
 }

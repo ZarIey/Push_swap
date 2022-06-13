@@ -1,4 +1,5 @@
 NAME 	= 	push_swap
+BONUS	=	checker
 FILES	= 	creation_stack	\
 			errors			\
 			sort			\
@@ -16,16 +17,31 @@ FILES	= 	creation_stack	\
 			./tools/tools_swap_push		\
 			./tools/tools_reverse_rotate
 
+FILES_B	=	checker				\
+			checker_commands	\
+			ch_creation_stack	\
+			ch_errors			\
+			ch_list_infos		\
+			./ch_tools/ch_rotate		\
+			./ch_tools/ch_swap_push		\
+			./ch_tools/ch_reverse_rotate
+
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
 
 OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 
+SRCS_B_DIR = ./bonus/
+SRCS_B = $(addprefix $(SRCS_B_DIR), $(addsuffix .c, $(FILES_B)))
+
+OBJS_B_DIR = ./bonus/
+OBJS_B = $(addprefix $(OBJS_B_DIR), $(addsuffix .o, $(FILES_B)))
+
 LIBFT_DIR = ./libft/
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra 
+CFLAGS	= -Wall -Werror -Wextra -g
 LIBRARIES = -lft -L$(LIBFT_DIR)
 HEADERS = -I$(LIBFT_DIR)
 .c.o		:
@@ -35,12 +51,20 @@ ${NAME} 	:	$(LIBFT) ${OBJS}
 				@${CC} ${CFLAGS} ${LIBRARIES} ${OBJS} -o $@
 				@echo "\033[32m\n📊 Push_swap Compiled !\n"
 
+
 $(LIBFT)	:	
 				@echo "\033[32m\n🧠 Compiling ... \n\033[33;1m"
 				@$(MAKE) -C $(LIBFT_DIR)
 				@echo "\033[32m\n😎 Libft Compiled !\n\033[33;1m"
 
+${BONUS}	:	$(LIBFT) ${OBJS_B}
+				@${CC} ${CFLAGS} ${LIBRARIES} ${OBJS_B} -o $@
+				@echo "\033[32m\n📊 Checker Compiled !\n"
+				
 all			:	${NAME}
+
+bonus		:	${BONUS}
+
 
 clean		:	
 				@echo "\033[32m\n🧻 Clean ... \n\033[33;1m"
