@@ -63,7 +63,7 @@ ${BONUS}	:	$(LIBFT) ${OBJS_B}
 				
 all			:	${NAME}
 
-bonus		:	${BONUS}
+bonus		:	${NAME} ${BONUS}
 
 
 clean		:	
@@ -74,7 +74,7 @@ clean		:
 
 fclean 		:	clean
 				@echo "\033[32m\n🧻 Fclean ... \n\033[33;1m"
-				@rm -rf ${NAME}
+				@rm -rf ${NAME} ${BONUS}
 				@$(MAKE) fclean -C $(LIBFT_DIR)
 				@echo "\033[32;1m\n🗑  Deleting everything !\n"
 

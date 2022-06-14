@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 19:22:57 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/13 17:52:56 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/14 17:08:43 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 int	void_arg(char *argv)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (argv[i])
 	{
 		if (argv[i] == '-' || argv[i] == '+')
@@ -34,6 +32,8 @@ int	void_arg(char *argv)
 				return (1);
 			}
 			i++;
+			if (!(argv[i]))
+				exit(0);
 		}
 		if ((argv[i] >= 48 && argv[i] <= 57))
 			return (0);
@@ -54,7 +54,9 @@ int	check_argv(int argc, char **argv)
 
 void	init_checker(t_checker *checker, int argc, char **argv)
 {
-	if (check_argv(argc, argv) > 0 || argc == 1)
+	if (argc == 1 || strncmp(argv[1], "\0", 1) == 0)
+		exit(0);
+	if (check_argv(argc, argv) > 0)
 	{
 		write (1, "Error\n", 6);
 		exit(0);
@@ -62,8 +64,6 @@ void	init_checker(t_checker *checker, int argc, char **argv)
 	errors(argv);
 	checker->stack_a = creation_stack(argc, argv);
 	checker->stack_b = NULL;
-	if (check_sorted(checker) == 0)
-		exit(0);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/12 16:45:33 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/14 17:08:55 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	void_arg(char *argv)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (argv[i])
 	{
 		if (argv[i] == '-' || argv[i] == '+')
@@ -32,6 +30,8 @@ int	void_arg(char *argv)
 				return (1);
 			}
 			i++;
+			if (!(argv[i]))
+				exit(0);
 		}
 		if ((argv[i] >= 48 && argv[i] <= 57))
 			return (0);
@@ -74,7 +74,9 @@ int	main(int argc, char **argv)
 	t_prog	prog;
 	t_list	*stack_a;
 
-	if (check_argv(argc, argv) > 0 || argc == 1)
+	if (argc == 1 || strncmp(argv[1], "\0", 1) == 0)
+		exit(0);
+	if (check_argv(argc, argv) > 0)
 		error();
 	errors(argv);
 	prog.stack_a = creation_stack(argc, argv);
