@@ -6,11 +6,13 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 06:29:03 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/14 17:08:55 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/15 18:12:22 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+#include <stdio.h>
 
 int	void_arg(char *argv)
 {
@@ -42,6 +44,8 @@ int	void_arg(char *argv)
 
 int	check_argv(int argc, char **argv)
 {
+	if (argc == 1 || strncmp(argv[1], "\0", 1) == 0)
+		exit(0);
 	if (argc == 2)
 	{
 		if (void_arg(argv[1]) > 0)
@@ -69,18 +73,45 @@ void	little_arg(t_prog prog)
 	}
 }
 
+int	new_check_duplicate(t_prog *prog)
+{
+	t_list	*stack_a;
+	t_list	*stack_tag;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 1;
+	stack_a = prog->stack_a;
+	stack_tag = prog->stack_a->next;
+	while (stack_tag)
+	{
+		stack_a = prog->stack_a;
+		while (i < j)
+		{
+			if (stack_a->content == stack_tag->content)
+				error();
+			stack_a = stack_a->next;
+			i++;
+		}
+		stack_tag = stack_tag->next;
+		j++;
+		i = 0;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_prog	prog;
 	t_list	*stack_a;
 
-	if (argc == 1 || strncmp(argv[1], "\0", 1) == 0)
-		exit(0);
 	if (check_argv(argc, argv) > 0)
 		error();
 	errors(argv);
 	prog.stack_a = creation_stack(argc, argv);
 	prog.stack_b = NULL;
+	new_check_duplicate(&prog);
 	prog.size = size_list(prog.stack_a);
 	stack_a = (prog.stack_a);
 	ghost_sorting(&stack_a);

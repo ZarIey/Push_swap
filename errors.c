@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 17:17:49 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/11 19:10:23 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/15 18:09:05 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,10 @@ int	check_int_scale(char **argv)
 	return (0);
 }
 
-int	check_duplicate(char **argv)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 0;
-	while (argv[i])
-	{
-		while (j < i)
-		{
-			if (ft_strncmp(argv[j], argv[i], 11) == 0)
-				return (-1);
-			j++;
-		}
-		i++;
-		j = 0;
-	}
-	return (0);
-}
-
 int	errors(char **argv)
 {
 	no_param(argv);
-	if ((check_letter(argv) == -1) || (check_int_scale(argv) == -1)
-		|| (check_duplicate(argv) == -1))
+	if ((check_letter(argv) == -1) || (check_int_scale(argv) == -1))
 		error();
 	return (0);
 }
