@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 15:58:41 by ctardy            #+#    #+#             */
-/*   Updated: 2022/06/16 16:31:57 by ctardy           ###   ########.fr       */
+/*   Updated: 2022/06/17 21:24:19 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	sorted_or_not_uh_uh(t_checker *checker, int size)
 		{
 			if (stack_a->content > stack_a->next->content)
 			{
+				write(1, "KO\n", 3);
 				exit (0);
 			}
 			stack_a = stack_a->next;
